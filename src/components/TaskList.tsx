@@ -9,10 +9,10 @@ interface TaskListProps {
 
 const TaskList = (props: TaskListProps) => {
   const taskHeaders = props.tasks.map((task) => (
-    <li>
-      <span>{task.title}</span>
-      <span>
-        <span>
+    <li className="flow-root px-4">
+      <span className="float-left">{task.title}</span>
+      <span className="float-right">
+        <span className="mx-4">
           {task.dueDate.getMonth() + 1}/{task.dueDate.getDate()}/
           {task.dueDate.getFullYear()}
         </span>

@@ -5,6 +5,7 @@ import Task from "../types/Task";
 
 interface TaskListProps {
   tasks: Task[];
+  setActiveTask: (newActiveTask: number) => void;
 }
 
 // Builds due date strings, used by the task header list.
@@ -18,7 +19,11 @@ const buildDateString = (date: Date) => {
 
 const TaskList = (props: TaskListProps) => {
   const taskHeaders = props.tasks.map((task, index) => (
-    <li className="border flow-root px-4" key={index}>
+    <li
+      className="border flow-root px-4"
+      key={index}
+      onClick={() => props.setActiveTask(index)}
+    >
       <span className="float-left">{task.title}</span>
       <span className="float-right">
         <span className="mx-4">{buildDateString(task.dueDate)}</span>
@@ -32,7 +37,7 @@ const TaskList = (props: TaskListProps) => {
 
   return (
     <div className="border h-3/5">
-      Task List
+      <p className="text-2xl">Task List</p>
       <ul className="text-left">{taskHeaders}</ul>
     </div>
   );

@@ -3,8 +3,17 @@ import React from "react";
 // Types
 import Task from "../types/Task";
 
-const ActiveTaskDetail = () => {
-  return <div>Active Task Detail</div>;
+interface ActiveTaskDetailProps {
+  task: Task;
+}
+
+const ActiveTaskDetail = (props: ActiveTaskDetailProps) => {
+  return (
+    <div>
+      <p className="text-2xl">Active Task Detail</p>
+      <div>{props.task.title}</div>
+    </div>
+  );
 };
 
 export default ActiveTaskDetail;

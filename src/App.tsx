@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 // Components
@@ -29,14 +29,16 @@ const testTasks: Task[] = [
 ];
 
 const App = () => {
+  const [activeTask, setActiveTask] = useState(0);
+
   return (
     <div className="App grid grid-cols-2">
       <div className="h-screen">
-        <TaskList tasks={testTasks} />
-        <ActiveTaskOverview />
+        <TaskList tasks={testTasks} setActiveTask={setActiveTask} />
+        <ActiveTaskOverview task={testTasks[activeTask]} />
       </div>
       <div className="h-screen">
-        <ActiveTaskDetail />
+        <ActiveTaskDetail task={testTasks[activeTask]} />
       </div>
     </div>
   );

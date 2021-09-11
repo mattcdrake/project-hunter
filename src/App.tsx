@@ -31,10 +31,21 @@ const testTasks: Task[] = [
 const App = () => {
   const [activeTask, setActiveTask] = useState(0);
 
+  const setActiveTaskWrapper = (task: number) => {
+    let newActiveTask = 0;
+    task = Math.floor(task);
+
+    if (task > 0 && task < testTasks.length) {
+      newActiveTask = task;
+    }
+
+    setActiveTask(newActiveTask);
+  };
+
   return (
     <div className="App grid grid-cols-2">
       <div className="h-screen">
-        <TaskList tasks={testTasks} setActiveTask={setActiveTask} />
+        <TaskList tasks={testTasks} setActiveTask={setActiveTaskWrapper} />
         <ActiveTaskOverview task={testTasks[activeTask]} />
       </div>
       <div className="h-screen">

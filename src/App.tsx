@@ -12,16 +12,19 @@ import Task from "./types/Task";
 // Test data used during development
 const testTasks: Task[] = [
   {
+    id: 1,
     title: "Go to the grocery store",
     dueDate: new Date("2021-09-12"),
     difficulty: 2,
   },
   {
+    id: 2,
     title: "Make a sandwich",
     dueDate: new Date("2021-09-13"),
     difficulty: 3,
   },
   {
+    id: 3,
     title: "Build the next unicorn",
     dueDate: new Date("2022-09-12"),
     difficulty: 5,
@@ -29,27 +32,29 @@ const testTasks: Task[] = [
 ];
 
 const App = () => {
-  const [activeTask, setActiveTask] = useState(0);
+  const [activeTaskIndex, setActiveTaskIndex] = useState(0);
+  const activeTask = testTasks[activeTaskIndex];
 
-  const setActiveTaskWrapper = (task: number) => {
-    let newActiveTask = 0;
+  // Checks boundary conditions before setting a new active task
+  const setActiveTaskIndexWrapper = (task: number) => {
+    let newActiveTaskIndex = 0;
     task = Math.floor(task);
 
     if (task >= 0 && task < testTasks.length) {
-      newActiveTask = task;
+      newActiveTaskIndex = task;
     }
 
-    setActiveTask(newActiveTask);
+    setActiveTaskIndex(newActiveTaskIndex);
   };
 
   return (
     <div className="App grid grid-cols-2">
       <div className="h-screen">
-        <TaskList tasks={testTasks} setActiveTask={setActiveTaskWrapper} />
-        <ActiveTaskOverview task={testTasks[activeTask]} />
+        <TaskList tasks={testTasks} setActiveTask={setActiveTaskIndexWrapper} />
+        <ActiveTaskOverview task={activeTask} key={activeTask.title} />
       </div>
       <div className="h-screen">
-        <ActiveTaskDetail task={testTasks[activeTask]} />
+        <ActiveTaskDetail task={activeTask} />
       </div>
     </div>
   );

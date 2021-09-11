@@ -35,7 +35,7 @@ const App = () => {
     let newActiveTask = 0;
     task = Math.floor(task);
 
-    if (task > 0 && task < testTasks.length) {
+    if (task >= 0 && task < testTasks.length) {
       newActiveTask = task;
     }
 
